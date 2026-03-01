@@ -1,0 +1,15 @@
+com/inferenceframework/kafka/KafkaConsumer$1.class
+com/inferenceframework/Main.class
+com/inferenceframework/kafka/KafkaConsumer.class
+com/inferenceframework/schema/SchemaValidator.class
+com/inferenceframework/processing/EventProcessor.class
+com/inferenceframework/model/ModelInterface.class
+com/inferenceframework/model/models/LoginAnomaly.class
+com/inferenceframework/model/ModelLoader.class
+com/inferenceframework/kafka/KafkaProducer.class
+com/inferenceframework/event/OutputEvent.class
+com/inferenceframework/processing/LogProcessor.class
+com/inferenceframework/config/Config.class
+com/inferenceframework/kafka/KafkaConsumer$2.class
+com/inferenceframework/processing/FeatureStore.class
+com/inferenceframework/model/models/BaseModel.class

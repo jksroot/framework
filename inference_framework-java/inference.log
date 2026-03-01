@@ -1,0 +1,866 @@
+2026-02-17 23:52:21 - com.inferenceframework.Main - INFO - Starting Real-Time Inference Framework (Java version)
+2026-02-17 23:52:21 - c.i.schema.SchemaValidator - INFO - Loaded schema: app_log_type_login
+2026-02-17 23:52:21 - c.i.schema.SchemaValidator - INFO - Loaded schema: app_log_type_exfil
+2026-02-17 23:52:21 - c.i.processing.FeatureStore - INFO - Loaded features for 2 users.
+2026-02-17 23:52:21 - c.i.model.ModelLoader - INFO - Loaded single model for this deployment: login_anomaly (topic=app_logs_login, schema=app_log_type_login)
+2026-02-17 23:52:21 - o.a.k.c.producer.ProducerConfig - INFO - ProducerConfig values: 
+	acks = -1
+	auto.include.jmx.reporter = true
+	batch.size = 16384
+	bootstrap.servers = [localhost:9092]
+	buffer.memory = 33554432
+	client.dns.lookup = use_all_dns_ips
+	client.id = producer-1
+	compression.type = none
+	connections.max.idle.ms = 540000
+	delivery.timeout.ms = 120000
+	enable.idempotence = true
+	interceptor.classes = []
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	linger.ms = 0
+	max.block.ms = 60000
+	max.in.flight.requests.per.connection = 5
+	max.request.size = 1048576
+	metadata.max.age.ms = 300000
+	metadata.max.idle.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partitioner.adaptive.partitioning.enable = true
+	partitioner.availability.timeout.ms = 0
+	partitioner.class = null
+	partitioner.ignore.keys = false
+	receive.buffer.bytes = 32768
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 3
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.timeout.ms = 60000
+	transactional.id = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+
+2026-02-17 23:52:21 - o.a.k.clients.producer.KafkaProducer - INFO - [Producer clientId=producer-1] Instantiated an idempotent producer.
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - Kafka version: 3.6.0
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - Kafka commitId: 60e845626d8a465a
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - Kafka startTimeMs: 1771352541706
+2026-02-17 23:52:21 - c.i.kafka.KafkaProducer - INFO - Initialized producer for output topic: inference_events (DLQ: inference_events_dlq)
+2026-02-17 23:52:21 - o.a.k.c.consumer.ConsumerConfig - INFO - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-inference-consumer-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = inference-consumer
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - Kafka version: 3.6.0
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - Kafka commitId: 60e845626d8a465a
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - Kafka startTimeMs: 1771352541729
+2026-02-17 23:52:21 - c.i.kafka.KafkaConsumer - INFO - Initialized KafkaConsumer instance for multi-consumer threads (partitions via brokers)
+2026-02-17 23:52:21 - o.a.k.c.admin.AdminClientConfig - INFO - AdminClientConfig values: 
+	auto.include.jmx.reporter = true
+	bootstrap.servers = [localhost:9092]
+	client.dns.lookup = use_all_dns_ips
+	client.id = 
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 5000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - Kafka version: 3.6.0
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - Kafka commitId: 60e845626d8a465a
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - Kafka startTimeMs: 1771352541739
+2026-02-17 23:52:21 - org.apache.kafka.clients.Metadata - INFO - [Producer clientId=producer-1] Cluster ID: MkU3OEVBNTcwNTJENDM2QkZGMjQ5N0Y1QjM1RjA5M0E=
+2026-02-17 23:52:21 - o.a.k.c.p.i.TransactionManager - INFO - [Producer clientId=producer-1] ProducerId set to 2 with epoch 0
+2026-02-17 23:52:21 - c.i.kafka.KafkaConsumer - INFO - Queried 1 partitions for topic app_logs_login from brokers
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - App info kafka.admin.client for adminclient-1 unregistered
+2026-02-17 23:52:21 - o.a.kafka.common.metrics.Metrics - INFO - Metrics scheduler closed
+2026-02-17 23:52:21 - o.a.kafka.common.metrics.Metrics - INFO - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-02-17 23:52:21 - o.a.kafka.common.metrics.Metrics - INFO - Metrics reporters closed
+2026-02-17 23:52:21 - com.inferenceframework.Main - INFO - Framework initialized with model: login_anomaly (topic=app_logs_login, schema=app_log_type_login, partitions=1). Starting 1 consumer threads...
+2026-02-17 23:52:21 - o.a.k.c.consumer.ConsumerConfig - INFO - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-inference-consumer-2
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = inference-consumer
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - Kafka version: 3.6.0
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - Kafka commitId: 60e845626d8a465a
+2026-02-17 23:52:21 - o.a.kafka.common.utils.AppInfoParser - INFO - Kafka startTimeMs: 1771352541814
+2026-02-17 23:52:21 - c.i.kafka.KafkaConsumer - INFO - Initialized KafkaConsumer instance for multi-consumer threads (partitions via brokers)
+2026-02-17 23:52:21 - o.a.k.clients.consumer.KafkaConsumer - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] Subscribed to topic(s): app_logs_login
+2026-02-17 23:52:21 - c.i.kafka.KafkaConsumer - INFO - Subscribed to model-specific topic: [app_logs_login] (schema=app_log_type_login) on thread pool-1-thread-1
+2026-02-17 23:52:21 - c.i.kafka.KafkaConsumer - INFO - KafkaConsumer started on thread pool-1-thread-1 (for partition-based multithreading)
+2026-02-17 23:52:21 - org.apache.kafka.clients.Metadata - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] Cluster ID: MkU3OEVBNTcwNTJENDM2QkZGMjQ5N0Y1QjM1RjA5M0E=
+2026-02-17 23:52:21 - o.a.k.c.c.i.ConsumerCoordinator - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+2026-02-17 23:52:21 - o.a.k.c.c.i.ConsumerCoordinator - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] (Re-)joining group
+2026-02-17 23:52:21 - o.a.k.c.c.i.ConsumerCoordinator - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] Request joining group due to: need to re-join with the given member-id: consumer-inference-consumer-2-2a6ed21d-a03b-48fb-a24e-7f856c9d5114
+2026-02-17 23:52:21 - o.a.k.c.c.i.ConsumerCoordinator - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] Request joining group due to: rebalance failed due to 'The group member needs to have a valid member id before actually entering a consumer group.' (MemberIdRequiredException)
+2026-02-17 23:52:21 - o.a.k.c.c.i.ConsumerCoordinator - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] (Re-)joining group
+2026-02-17 23:52:21 - o.a.k.c.c.i.ConsumerCoordinator - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] Successfully joined group with generation Generation{generationId=11, memberId='consumer-inference-consumer-2-2a6ed21d-a03b-48fb-a24e-7f856c9d5114', protocol='range'}
+2026-02-17 23:52:21 - o.a.k.c.c.i.ConsumerCoordinator - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] Finished assignment for group at generation 11: {consumer-inference-consumer-2-2a6ed21d-a03b-48fb-a24e-7f856c9d5114=Assignment(partitions=[app_logs_login-0])}
+2026-02-17 23:52:21 - o.a.k.c.c.i.ConsumerCoordinator - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] Successfully synced group in generation Generation{generationId=11, memberId='consumer-inference-consumer-2-2a6ed21d-a03b-48fb-a24e-7f856c9d5114', protocol='range'}
+2026-02-17 23:52:21 - o.a.k.c.c.i.ConsumerCoordinator - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] Notifying assignor about the new Assignment(partitions=[app_logs_login-0])
+2026-02-17 23:52:21 - o.a.k.c.c.i.ConsumerCoordinator - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] Adding newly assigned partitions: app_logs_login-0
+2026-02-17 23:52:21 - c.i.kafka.KafkaConsumer - INFO - Partitions assigned to thread pool-1-thread-1: [app_logs_login-0]
+2026-02-17 23:52:21 - o.a.k.c.c.i.ConsumerCoordinator - INFO - [Consumer clientId=consumer-inference-consumer-2, groupId=inference-consumer] Setting offset for partition app_logs_login-0 to the committed offset FetchPosition{offset=3477, offsetEpoch=Optional[2], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=2}}
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.8580726876470888
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.589300047553987
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7539897960323073
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.6055054338202758
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5649727902075617
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7152100911927357
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.5011660224787767
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.8434617208482187
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5636144868153714
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.9255620642635234
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7006290327630803
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7909804660952509
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5352307906936175
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.5510185455199688
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.5514495508084916
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.6700449969733828
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7647757769776213
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5234178906040967
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6576248389996917
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.9272697761660382
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9422171536762157
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9021374799276523
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.6952087392078936
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.9499688378275526
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8716770843670876
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6912254894161964
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.835597049840029
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9412888176794499
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8190104308994479
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.6854390456698378
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8892979959505759
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8114825621544122
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8230769742708106
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7956774881961605
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5049834179907359
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8324830144920577
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.646290364836038
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.6962103174000982
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8992918625147082
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.863543703855769
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8732509615968459
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7150642580660612
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5363340730716399
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.8623158126981934
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.834674307685935
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8636209941583899
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6332353902885669
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.730458046554106
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.8440995151945757
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.9722055746697298
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5279982988261033
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.5897690093242048
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.6867570108075893
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5074856419144077
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9897418981173979
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7494964900836135
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.926261494799114
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.940648242170998
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.9069452695840295
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.7025380110792466
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5491781136038022
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5124484430721652
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6272650254918579
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6622360117539212
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9669082495640915
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.9054956968346529
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6882814772873121
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.9997010240698361
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5044992827014183
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.664322735806534
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8356010470222532
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7378905445060198
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5679486427320891
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.8562008938263976
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5699381209166586
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5465583755640605
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7491787141240283
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.9528879188650422
+2026-02-17 23:52:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9314425076296763
+2026-02-17 23:52:21 - c.i.processing.LogProcessor - INFO - Generated 79 inference events from batch using model: login_anomaly
+2026-02-17 23:52:23 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:52:25 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7363508891341923
+2026-02-17 23:52:25 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:52:27 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:52:29 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7776386055268776
+2026-02-17 23:52:29 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:52:31 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:52:33 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8403952099543021
+2026-02-17 23:52:33 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:52:34 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.81505314744991
+2026-02-17 23:52:34 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:52:36 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:52:39 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5436483587486401
+2026-02-17 23:52:39 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:52:41 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8908457486497435
+2026-02-17 23:52:41 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:52:43 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:52:45 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5167562222114611
+2026-02-17 23:52:45 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:52:47 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8663901872770525
+2026-02-17 23:52:47 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:52:49 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:52:51 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:52:52 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5321494542604517
+2026-02-17 23:52:52 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:52:54 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7509045845321313
+2026-02-17 23:52:54 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:52:57 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8864693329216964
+2026-02-17 23:52:57 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:52:59 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6360618366252571
+2026-02-17 23:52:59 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:01 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:03 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.9075167883659087
+2026-02-17 23:53:03 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:05 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9432588338933154
+2026-02-17 23:53:05 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:07 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8782456807537353
+2026-02-17 23:53:07 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:09 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8386280893021533
+2026-02-17 23:53:09 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:10 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:12 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:15 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.6052239695353984
+2026-02-17 23:53:15 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:17 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9246753449107363
+2026-02-17 23:53:17 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:19 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7841266656813999
+2026-02-17 23:53:21 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:23 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.7105030322259355
+2026-02-17 23:53:23 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:25 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:27 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7509999301469934
+2026-02-17 23:53:27 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:28 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:31 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5555698007961694
+2026-02-17 23:53:31 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:33 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:35 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.8645007879433648
+2026-02-17 23:53:35 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:37 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:39 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7061310523111207
+2026-02-17 23:53:39 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:41 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:43 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:45 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5119689241028179
+2026-02-17 23:53:45 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:46 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7471306619335192
+2026-02-17 23:53:46 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:53:49 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:51 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:53 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:55 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:57 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:53:59 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7893501392966684
+2026-02-17 23:53:59 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:01 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:03 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:04 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9029728764636369
+2026-02-17 23:54:04 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:07 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:09 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:11 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:13 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:15 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:17 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:19 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.72818758286494
+2026-02-17 23:54:21 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:23 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7835406157032024
+2026-02-17 23:54:23 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:25 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8211300782997571
+2026-02-17 23:54:25 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:27 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7942038655389988
+2026-02-17 23:54:27 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:29 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.9707570923719644
+2026-02-17 23:54:29 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:31 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.7496390923989905
+2026-02-17 23:54:31 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:33 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5929577964539807
+2026-02-17 23:54:33 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:35 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.5892912606957647
+2026-02-17 23:54:35 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:37 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:39 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.7262162433275289
+2026-02-17 23:54:39 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:41 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.698580618087295
+2026-02-17 23:54:41 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:43 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:45 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:47 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:49 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.9864000154861031
+2026-02-17 23:54:49 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:51 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:53 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8283021440929822
+2026-02-17 23:54:53 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:54:55 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:58 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:54:59 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8108339121936227
+2026-02-17 23:54:59 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:01 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8724059988916091
+2026-02-17 23:55:01 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:03 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7917454120924081
+2026-02-17 23:55:03 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:05 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:55:07 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:55:09 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6923790932452222
+2026-02-17 23:55:09 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:11 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7915295473545739
+2026-02-17 23:55:11 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:13 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:55:16 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8521432785564522
+2026-02-17 23:55:16 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:17 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.993970142933791
+2026-02-17 23:55:17 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:19 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5734233745348524
+2026-02-17 23:55:19 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7247267907119165
+2026-02-17 23:55:21 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:23 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:55:25 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5880778033277181
+2026-02-17 23:55:25 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:27 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9405959245259049
+2026-02-17 23:55:27 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:29 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:55:31 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.8468902686146822
+2026-02-17 23:55:31 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:34 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:55:35 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:55:37 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.7944625627746655
+2026-02-17 23:55:37 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:39 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:55:41 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.6514610786140352
+2026-02-17 23:55:41 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:43 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.824947701506577
+2026-02-17 23:55:43 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:45 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7168454018449667
+2026-02-17 23:55:45 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:47 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7501064203818544
+2026-02-17 23:55:47 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:50 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:55:52 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:55:53 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9995978863771883
+2026-02-17 23:55:53 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:55 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.96143944858762
+2026-02-17 23:55:55 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:57 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6764744659430807
+2026-02-17 23:55:57 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:55:59 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:01 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:03 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:05 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:08 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:10 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5555318748252974
+2026-02-17 23:56:10 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:56:11 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:13 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.6218251824662698
+2026-02-17 23:56:13 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:56:15 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.9251943763105933
+2026-02-17 23:56:15 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:56:17 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:19 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:21 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:23 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:26 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.7510439827420988
+2026-02-17 23:56:26 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:56:28 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:29 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:31 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9964990128088259
+2026-02-17 23:56:31 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:56:33 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.832251885968265
+2026-02-17 23:56:33 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:56:35 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.6089618930726082
+2026-02-17 23:56:35 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:56:37 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:39 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:42 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:44 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:46 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6972644311867844
+2026-02-17 23:56:46 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:56:47 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8905355149402773
+2026-02-17 23:56:47 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:56:49 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5819730200864002
+2026-02-17 23:56:49 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:56:51 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:53 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.648442770312387
+2026-02-17 23:56:53 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:56:55 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:56:57 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.5331220269305637
+2026-02-17 23:56:57 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:00 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5264576186475571
+2026-02-17 23:57:00 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:02 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7812419439096833
+2026-02-17 23:57:02 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:04 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7161692201209131
+2026-02-17 23:57:04 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:05 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:57:07 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9188931829182103
+2026-02-17 23:57:07 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:09 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:57:11 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5301879356243158
+2026-02-17 23:57:11 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:13 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:57:15 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.9111062223003135
+2026-02-17 23:57:15 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:18 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5871583744352689
+2026-02-17 23:57:18 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:20 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5573108219072704
+2026-02-17 23:57:20 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:22 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9119907441085793
+2026-02-17 23:57:22 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:23 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.6394377837427748
+2026-02-17 23:57:23 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:25 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.9180188219825316
+2026-02-17 23:57:25 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:27 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.9587998931005268
+2026-02-17 23:57:27 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:29 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:57:31 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:57:34 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.5182288717202692
+2026-02-17 23:57:34 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:36 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8217219381158317
+2026-02-17 23:57:36 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:38 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:57:40 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7230286630768362
+2026-02-17 23:57:40 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:41 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:57:43 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:57:45 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.5456148709986585
+2026-02-17 23:57:45 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:47 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8454613653634332
+2026-02-17 23:57:47 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:49 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7301510748418342
+2026-02-17 23:57:49 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:52 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.7517465739882964
+2026-02-17 23:57:52 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:57:54 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:57:56 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:57:58 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:57:59 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:01 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.549202808533758
+2026-02-17 23:58:01 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:03 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:05 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8774249196770292
+2026-02-17 23:58:05 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:07 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:10 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:12 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:14 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6849350521818377
+2026-02-17 23:58:14 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:16 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:17 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5677937319931818
+2026-02-17 23:58:17 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:19 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:21 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.9898603095765821
+2026-02-17 23:58:21 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:23 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:26 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:28 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.9314958474784253
+2026-02-17 23:58:28 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:30 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:32 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:34 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.6403145603853588
+2026-02-17 23:58:34 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:35 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.7466578390155324
+2026-02-17 23:58:35 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:37 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:39 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.6901065928397817
+2026-02-17 23:58:39 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:41 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8784387684648114
+2026-02-17 23:58:41 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:44 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6450435254518022
+2026-02-17 23:58:44 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:46 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.82058546067419
+2026-02-17 23:58:46 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:48 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.6725374076437639
+2026-02-17 23:58:48 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:50 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:52 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5371000976358751
+2026-02-17 23:58:52 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:53 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:55 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9817821471315992
+2026-02-17 23:58:55 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:58:57 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:58:59 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:59:02 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.7060805828049252
+2026-02-17 23:59:02 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:04 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:59:06 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.9253119061015393
+2026-02-17 23:59:06 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:08 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:59:10 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.9259369529164143
+2026-02-17 23:59:10 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:11 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.8409152097966375
+2026-02-17 23:59:11 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:13 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.5722532317493392
+2026-02-17 23:59:13 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:15 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:59:18 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8474783096306975
+2026-02-17 23:59:18 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:20 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:59:22 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:59:24 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:59:26 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.6872421284753188
+2026-02-17 23:59:26 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:28 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.771519270466691
+2026-02-17 23:59:28 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:29 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:59:31 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7296184267820934
+2026-02-17 23:59:31 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:33 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8494860773488572
+2026-02-17 23:59:33 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:36 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5360729384852213
+2026-02-17 23:59:36 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:38 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:59:40 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:59:42 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5067770426412722
+2026-02-17 23:59:42 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:44 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-17 23:59:46 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8872472419706179
+2026-02-17 23:59:46 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:47 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8054353078316765
+2026-02-17 23:59:47 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:49 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.8456395269544031
+2026-02-17 23:59:49 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:51 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.6867837425384838
+2026-02-17 23:59:51 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:54 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5602492004178056
+2026-02-17 23:59:54 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:56 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.9822203484091224
+2026-02-17 23:59:56 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-17 23:59:58 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-18 00:00:00 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7937856355121702
+2026-02-18 00:00:00 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:02 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.6999698784143056
+2026-02-18 00:00:02 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:04 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.799837773582864
+2026-02-18 00:00:04 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:05 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-18 00:00:07 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.7422666769803207
+2026-02-18 00:00:07 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:10 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.6387324707756644
+2026-02-18 00:00:10 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:12 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-18 00:00:14 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-18 00:00:16 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.9395745276076102
+2026-02-18 00:00:16 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:18 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user def with random score 0.5342044252084769
+2026-02-18 00:00:18 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:20 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-18 00:00:22 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.7884755193793308
+2026-02-18 00:00:22 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:23 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.8808072960386911
+2026-02-18 00:00:23 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:25 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user xyz with random score 0.850086873014194
+2026-02-18 00:00:25 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:28 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-18 00:00:30 - c.i.processing.LogProcessor - INFO - Generated 0 inference events from batch using model: login_anomaly
+2026-02-18 00:00:32 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.5662750376313981
+2026-02-18 00:00:32 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:34 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.8286300513236788
+2026-02-18 00:00:34 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:36 - c.i.model.models.LoginAnomaly - INFO - Detected anomaly for user abc with random score 0.5371627514894477
+2026-02-18 00:00:36 - c.i.processing.LogProcessor - INFO - Generated 1 inference events from batch using model: login_anomaly
+2026-02-18 00:00:38 - com.inferenceframework.Main - INFO - Main shutdown hook: closing producer and consumers
+2026-02-18 00:00:38 - c.i.kafka.KafkaConsumer - INFO - Shutdown hook triggered on thread Thread-1
+2026-02-18 00:00:38 - o.a.k.clients.producer.KafkaProducer - INFO - [Producer clientId=producer-1] Closing the Kafka producer with timeoutMillis = 9223372036854775807 ms.
+2026-02-18 00:00:38 - c.i.kafka.KafkaConsumer - INFO - Consumer wakeup for shutdown on thread pool-1-thread-1
+2026-02-18 00:00:38 - o.a.kafka.common.metrics.Metrics - INFO - Metrics scheduler closed
+2026-02-18 00:00:38 - o.a.kafka.common.metrics.Metrics - INFO - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-02-18 00:00:38 - o.a.kafka.common.metrics.Metrics - INFO - Metrics reporters closed
+2026-02-18 00:00:38 - o.a.kafka.common.utils.AppInfoParser - INFO - App info kafka.producer for producer-1 unregistered

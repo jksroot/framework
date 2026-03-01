@@ -1,0 +1,16 @@
+{
+  "abc": {
+    "user_id": "abc",
+    "version": "2024-02-10",
+    "ip_address_profile": {"frequent_ips": ["192.168.1.1"], "risk_score": 0.1},
+    "user_agent_profile": {"common_agents": ["Mozilla/5.0"], "device_type": "desktop"},
+    "country_code_profile": {"common_countries": ["US"], "travel_freq": 0}
+  },
+  "def": {
+    "user_id": "def",
+    "version": "2024-02-10",
+    "ip_address_profile": {"frequent_ips": ["10.0.0.1"], "risk_score": 0.8},
+    "user_agent_profile": {"common_agents": ["curl/7.0"], "device_type": "api"},
+    "country_code_profile": {"common_countries": ["RU"], "travel_freq": 5}
+  }
+}

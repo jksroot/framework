@@ -1,0 +1,13 @@
+{
+  "name": "AppLogLogin",
+  "fields": {
+    "event_id": "str",
+    "log_type": "str",
+    "ip_address": "str",
+    "event_timestamp": "str",
+    "user_id": "str",
+    "user_agent": "str",
+    "country_code": "str"
+  },
+  "required": ["event_id", "log_type", "ip_address", "event_timestamp", "user_id"]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "AppLogExfil",
+  "fields": {
+    "event_id": "str",
+    "log_type": "str",
+    "ip_address": "str",
+    "event_timestamp": "str",
+    "user_id": "str",
+    "file_size": "int",
+    "destination": "str"
+  },
+  "required": ["event_id", "log_type", "ip_address", "event_timestamp", "user_id"]
+}

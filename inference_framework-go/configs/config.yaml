@@ -1,0 +1,47 @@
+kafka:
+  # General Kafka settings (input topics per-model; group_id can be model-specific in K8s)
+  # Common output_topic for ALL models' inference events (produced here).
+  bootstrap_servers: "localhost:19092"
+  group_id: "inference-consumer"
+  auto_offset_reset: "earliest"
+  enable_auto_commit: false
+  batch_size: 100
+  poll_timeout: 1.0
+  output_topic: "inference_events"  # common output for all models
+  dlq_topic: "inference_events_dlq"  # dead-letter queue for failed events after retries
+
+consumers:
+  # Multiple consumer instances for parallel processing
+  # Each instance is an independent Kafka consumer in the same consumer group
+  # Kafka will assign partitions to each instance
+  num_instances: 4          # Number of consumer instances when not using partition count (fallback)
+  max_instances: 10         # Maximum consumers when using partition count (fallback if partitions > this)
+  use_partition_count: true # If true, spawn consumers = min(partition count, max_instances)
+
+schemas:
+  base_path: "schemas"
+  # default_schema no longer used; each model specifies its schema
+
+features:
+  path: "features/user_features.json"
+
+models:
+  # Models keyed directly by name (each has its full config: topic, schema_name, etc.).
+  # Per-deployment, only ONE model (selected via CLI/Docker --model-name arg) is loaded.
+  # This enables separate K8s Deployments per model (each subscribes only to its topic;
+  # msgs conform to its schema).
+  login_anomaly:
+    topic: "app_logs_login"  # model subscribes only to this
+    schema_name: "app_log_type_login"  # msgs conform to this schema
+    threshold: 0.5
+    model_params: {}
+  data_exfil:  # example for another model (different topic/schema)
+    topic: "app_logs_exfil"
+    schema_name: "app_log_type_exfil"
+    threshold: 0.3
+    anomaly_types: ["exfil", "suspicious_upload"]
+    model_params: {}
+
+logging:
+  level: "INFO"
+  file: "inference.log"

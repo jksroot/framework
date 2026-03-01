@@ -1,0 +1,50 @@
+kafka:
+  # General Kafka settings (input topics per-model; group_id can be model-specific in K8s)
+  # Common output_topic for ALL models' inference events (produced here).
+  bootstrap_servers: "localhost:9092"
+  group_id: "inference-consumer"
+  auto_offset_reset: "earliest"
+  enable_auto_commit: false
+  batch_size: 100
+  poll_timeout: 1.0
+  # Multithreading: num_consumer_threads (fallback; each thread runs a dedicated KafkaConsumer instance).
+  # All share the same group.id; Kafka broker auto-assigns partitions to threads for parallel consumption.
+  # (KafkaConsumer not thread-safe, so one instance per thread; handles validate/process/send per-thread.)
+  # Dynamic override: threads = min(topic partitions from brokers, max_cap=10) or fallback to this.
+  num_consumer_threads: 3
+  output_topic: "inference_events"  # common output for all models
+  dlq_topic: "inference_events_dlq"  # dead-letter queue for failed events after retries
+
+schemas:
+  base_path: "schemas"
+  # default_schema no longer used; each model specifies its schema
+
+features:
+  path: "features/user_features.json"
+
+models:
+  # Models keyed directly by name (each has its full config: topic, schema_name, etc.).
+  # Per-deployment, only ONE model (selected via CLI/Docker --model-name arg) is loaded.
+  # This enables separate K8s Deployments per model (each subscribes only to its topic;
+  # msgs conform to its schema).
+  login_anomaly:
+    topic: "app_logs_login"  # model subscribes only to this
+    schema_name: "app_log_type_login"  # msgs conform to this schema
+    threshold: 0.5
+    model_params: {}
+  data_exfil:  # example for another model (different topic/schema)
+    topic: "app_logs_exfil"
+    schema_name: "app_log_type_exfil"
+    threshold: 0.3
+    anomaly_types: ["exfil", "suspicious_upload"]
+    model_params: {}
+
+logging:
+  level: "INFO"
+  file: "inference.log"
+
+# Java-specific notes:
+# - Uses Jackson for YAML/JSON, kafka-clients, networknt json-schema-validator
+# - Models loaded via reflection
+# - Data processing uses Java collections/streams instead of Polars
+# - Build/run via Maven/Docker as updated

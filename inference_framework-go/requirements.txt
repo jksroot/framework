@@ -1,0 +1,7 @@
+confluent-kafka
+pydantic
+polars
+pyyaml
+pytest
+pytest-mock
+pytest-cov
